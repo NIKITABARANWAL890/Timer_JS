@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: rgb(31, 31, 31);
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+        .clockHolder {
+            height: 100px;
+            width: 340px;
+            background-color: rgb(14, 29, 30);
+            border: 2px solid rgba(205, 205, 8, 0.915);
+            border-radius: 10px;
+        }
+        .timeHolder {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            height: 100%;
+        }
+        .timeOptions {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 12px;
+            color: white;
+        }
+        p {
+            color: white;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="clockHolder">
+            <div class="timeHolder">
+                <div class="timeOptions">
+                    <i class="fas fa-clock" data-title="Time"></i>
+                    <i class="fas fa-stopwatch" data-title="StopWatch"></i>
+                    <i class="far fa-clock" data-title="CountDown"></i>
+                </div>
+                <div class="mainDiv">
+                    <p id="clock"></p>
+                </div>
+            </div>      
+        </div>
+    </div>
+    <script>
+        const currTime = () => {
+            const options = {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true 
+            };
+            let curTime = new Date().toLocaleTimeString([], options);
+
+            document.getElementById("clock").innerText = curTime;
+        }
+        currTime();
+        const intervalId = setInterval(() => {
+            currTime();
+        }, 1000);
+
+        setTimeout(()=>clearInterval(intervalId), 5000);
+    </script>
+</body>
+</html>
